@@ -1,0 +1,36 @@
+<div class="login">
+    <h1>{{register_title}}</h1>
+<form [formGroup]="registerForm">
+    <div class="row mb-3">
+        <label for="fullName" class="col-sm-2 col-form-label">Full Name</label>
+        <div class="col-sm-10">
+          <input type="full name" class="form-control" id="fullname" formControlName="name">
+        </div>
+      </div>
+    <div class="row mb-3">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="inputEmail3" formControlName="email">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+      <div class="col-sm-10">
+        <input type="phone" class="form-control" id="phone" formControlName="phone">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPassword3" formControlName="password">
+      </div>
+    </div>
+    <div class="row mb-3">
+        <label for="confirmPasword" class="col-sm-2 col-form-label">Confirm Password</label>
+        <div class="col-sm-10">
+          <input type="confirm password" class="form-control" id="confirmPasword" formControlName="confirmPassword">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid" (click)="onRegister(registerForm.value)">Register</button>
+</form>
+</div>
