@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,12 @@ import { EditUsersComponent } from './components/edit-users/edit-users.component
 import { DocumentListComponent } from './components/document-list/document-list.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { currentUser } from './components/store/actions';
+import { dataReducer } from './components/store/reducer';
+import { LoginFailComponent } from './components/login-fail/login-fail.component';
 
 @NgModule({
   declarations: [
@@ -28,14 +34,18 @@ import { HttpClientModule } from '@angular/common/http';
     ChatListComponent,
     EditUsersComponent,
     DocumentListComponent,
-    LogoutComponent
+    LogoutComponent,
+    LoginFailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({currentUser: dataReducer}, {}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],
   bootstrap: [AppComponent]

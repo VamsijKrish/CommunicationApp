@@ -41,7 +41,18 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fdescribe('login', () => {
+  describe('ngOnInit', () => {
+    it('should create the loginForm with email and password controls', () => {
+      component.ngOnInit();
+  
+      expect(component.loginForm).toBeDefined();
+  
+      expect(component.loginForm.contains('email')).toBeTruthy();
+      expect(component.loginForm.contains('password')).toBeTruthy();
+    });
+  });
+
+  describe('login', () => {
     it('should navigate to /users/login-success if the user exists', fakeAsync(() => {
       const mockUsers = getMockUsers();
       usersService.getUsers.and.returnValue(of(mockUsers));
@@ -69,9 +80,7 @@ describe('LoginComponent', () => {
 
       expect(router.navigate).not.toHaveBeenCalledOnceWith(['/users/login-success']);
     }));
-
   });
-
 });
 
 function getMockUsers() {

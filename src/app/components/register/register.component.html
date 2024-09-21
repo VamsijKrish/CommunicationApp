@@ -6,11 +6,18 @@
         <div class="col-sm-10">
           <input type="full name" class="form-control" id="fullname" formControlName="name">
         </div>
-      </div>
+        <div  *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.dirty || registerForm.get('name')?.touched">
+          <div *ngIf="registerForm.get('name')?.errors?.['required']">Name is required</div>
+        </div>
+    </div>
     <div class="row mb-3">
       <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
         <input type="email" class="form-control" id="inputEmail3" formControlName="email">
+      </div>
+      <div  *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.dirty || registerForm.get('email')?.touched">
+        <div *ngIf="registerForm.get('email')?.errors?.['required']">Email is required</div>
+        <div *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email format</div>
       </div>
     </div>
     <div class="row mb-3">
@@ -24,11 +31,18 @@
       <div class="col-sm-10">
         <input type="password" class="form-control" id="inputPassword3" formControlName="password">
       </div>
+      <div  *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.dirty || registerForm.get('password')?.touched">
+        <div *ngIf="registerForm.get('password')?.errors?.['required']">Password is required</div>
+      </div>
     </div>
     <div class="row mb-3">
         <label for="confirmPasword" class="col-sm-2 col-form-label">Confirm Password</label>
         <div class="col-sm-10">
           <input type="confirm password" class="form-control" id="confirmPasword" formControlName="confirmPassword">
+        </div>
+        <div  *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched">
+          <div *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">Password is required</div>
+          <div *ngIf="registerForm.get('confirmPassword')?.errors?.['passwordDoesNotMatch']">Password does not match</div>
         </div>
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid" (click)="onRegister(registerForm.value)">Register</button>

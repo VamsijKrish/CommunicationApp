@@ -6,11 +6,13 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { LoginSuccessfulComponent } from './components/login-successful/login-successful.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RegisterSuccessfulComponent } from './components/register-successful/register-successful.component';
+import { LoginFailComponent } from './components/login-fail/login-fail.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent},
   { path: 'users/login', component: LoginComponent},
   { path: 'users/login-success', component: LoginSuccessfulComponent},
+  { path: 'users/login-fail', component: LoginFailComponent},
   { path: 'users/register', component: RegisterComponent},
   { path: 'users/registration-success', component: RegisterSuccessfulComponent},
   { path: 'users', component: UsersListComponent},

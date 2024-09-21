@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Constants } from 'src/app/interfaces/constants';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit{
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
       password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', [Validators.required, this.checkPassword()]]
     })
   }
 
@@ -41,4 +41,12 @@ export class RegisterComponent implements OnInit{
     });
   }
 
+  checkPassword(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if(control.value !== null && control.value !== this.registerForm.get('password')?.value) {
+        return { 'passwordDoesNotMatch': 'Password does not match' };
+      }
+      return null;
+    }
+  }
 }
