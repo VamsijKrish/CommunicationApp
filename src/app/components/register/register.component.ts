@@ -28,7 +28,8 @@ export class RegisterComponent implements OnInit{
     })
   }
 
-  onRegister(user: any) {
+  onRegister() {
+    const user = this.registerForm.value;
     console.log(user);
     this.usersService.getUsers().subscribe(resp => {
       const userExists = resp.data.filter((u: any) => u.email === user.email).length > 0;
